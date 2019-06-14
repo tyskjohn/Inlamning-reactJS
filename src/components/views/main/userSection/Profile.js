@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { logout, getUserProfile } from '../../../../store/actions/authActions';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
+import UpdateUserInfo from '../../../forms/UpdateUserInfo'
+
 
 const mapStateToProps = (state) => {
     return {
@@ -25,14 +27,22 @@ class Profile extends Component {
         super(props)
 
         this.state = {
-            //id: localStorage.getItem('USER_ID'),
-            currentUser: this.props.currentUser
+            currentUser: this.props.currentUser,
+            isEditing: false
         }
     }
 
     componentDidMount() {
         this.props.getUserProfile()
         this.setState({ currentUser: JSON.parse(localStorage.getItem('USER')) })
+    }
+
+    componentWillReceiveProps() {
+        this.setState({ isEditing: false })
+    }
+
+    toggleEdit = e => {
+        this.setState({ isEditing: !this.setState.isEditing })
     }
 
     logout = e => {   
@@ -46,48 +56,45 @@ class Profile extends Component {
             return( <Redirect to="/login" /> )
         }
 
+        if(this.state.isEditing) {
+            return (
+                <div className="container">
+
+                    <h2 className="mt-3 mb-5">Welcome {this.state.currentUser.firstname} {this.state.currentUser.lastname}</h2>
+
+                    <UpdateUserInfo currentUser={this.state.currentUser}  />
+
+                </div>
+            )
+        }
+
         return (
 
-
-            
-
             <div className="container">
+                
+                <h2 className="mt-3 mb-5">Welcome {this.state.currentUser.firstname} {this.state.currentUser.lastname} <button type="button" className="btn btn-warning btn ml-3" onClick={this.toggleEdit} ><i className="fas fa-cog"></i> Edit Profile</button> <button type="button" className="btn btn-primary btn ml-3" onClick={this.logout}>Logga ut</button></h2>
 
-                <button type="button" className="btn btn-primary btn-sm px-2 ml-3 mb-5 " onClick={this.logout}>Logga ut</button>
+                <div className=" mt-5">
 
-                <h2 className="mt-5 mb-5">Welcome {this.state.currentUser.firstname} {this.state.currentUser.lastname} </h2>
+                    <h5><i class="fas fa-user mr-1"></i> Overview</h5>
 
-                {/* <div className=" mt-4">
-
-                    <h5>Overview</h5>
-
-                    <ul className="list-group">
-                        <li className="list-group-item"><strong>Firstname:</strong> {this.props.userData.firstname}</li>
-                        <li className="list-group-item"><strong>Middlename:</strong> {this.props.userData.middlename}</li>
-                        <li className="list-group-item"><strong>Lastname:</strong> {this.props.userData.lastname}</li>
-                        <li className="list-group-item"><strong>Date of birth:</strong> {this.props.userData.dateofbirth}</li>
-                        <li className="list-group-item"><strong>Addressline:</strong> {this.props.userData.addressline}</li>
-                        <li className="list-group-item"><strong>Zipcode:</strong> {this.props.userData.zipcode}</li>
-                        <li className="list-group-item"><strong>City:</strong> {this.props.userData.city}</li>
-                        <li className="list-group-item"><strong>Country:</strong> {this.props.userData.country}</li>
+                    <ul className="list-group mt-3 mb-5">
+                        <li className="list-group-item"><strong>Firstname:</strong> {this.props.currentUser.firstname}</li>
+                        <li className="list-group-item"><strong>Middlename:</strong> {this.props.currentUser.middlename}</li>
+                        <li className="list-group-item"><strong>Lastname:</strong> {this.props.currentUser.lastname}</li>
+                        <li className="list-group-item"><strong>Date of birth:</strong> {this.props.currentUser.dateofbirth}</li>
+                        <li className="list-group-item"><strong>Addressline:</strong> {this.props.currentUser.addressline}</li>
+                        <li className="list-group-item"><strong>Zipcode:</strong> {this.props.currentUser.zipcode}</li>
+                        <li className="list-group-item"><strong>City:</strong> {this.props.currentUser.city}</li>
+                        <li className="list-group-item"><strong>Country:</strong> {this.props.currentUser.country}</li>
                     </ul>
 
-                </div> */}
+                </div>
 
             </div>
 
         )
     }
-
-    // componentDidMount() {
-    //     let getToken = localStorage.getItem('ACCESS_TOKEN');
-    //     http.get(`http://localhost:3001/api/angularUsers/` + this.state.id, { headers: { 'Authorization': `Bearer ${getToken}` } })
-
-    //         .then(user => this.setState({ user: user.data }))
-    //         .catch(error => console.log(error))
-
-    // }
-
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

@@ -2,3 +2,26 @@
     width: 50%;
     margin: auto;
 }
+
+.input-border-none {
+    border: none;
+    transition: ease-in-out .2s;
+}
+
+.list-group-item {
+    position: relative;
+}
+
+.edit-label {
+    position: absolute;
+    right: 20px;
+    top: 5px;
+    font-size: 25px;
+    cursor: pointer;
+    color: rgb(85, 85, 85);
+}
+
+.edit-label:hover {
+    transition: ease-in-out .2s;
+    color: blue;
+}
