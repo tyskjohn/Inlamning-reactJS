@@ -1,2 +1,103 @@
+<div className=" mt-5">
+
+    <h5>Edit Userinfo</h5>
+
+    <form className="mb-5 mt-3">
+        <div>
+            <div className="form-row">
+                <div className="form-group col-md-6">
+                    <label htmlFor="firstname">Firstname</label>
+                    <input type="text" formcontrolname="firstname" className="form-control" id="firstname" />
+                </div>
+                <div className="form-group col-md-6">
+                    <label htmlFor="lastname">Lastname</label>
+                    <input type="text" formcontrolname="lastname" className="form-control" id="lastname" />
+                </div>
+            </div>
+
+            <div className="form-row">
+                <div className="form-group col-md-6">
+                    <label htmlFor="lastname">Middlename</label>
+                    <input type="text" formcontrolname="middlename" className="form-control" id="middlename" />
+                </div>
+                <div className="form-group col-md-6">
+                    <label htmlFor="dateofbirth">Date of birth</label>
+                    <input type="text" formcontrolname="dateofbirth" className="form-control" id="dateofbirth"
+                        placeholder="yyyymmdd-xxxx" />
+                </div>
+            </div>
+
+            <hr className="mt-4 mb-4" />
+            <h5 className="mb-3">Shipping info</h5>
+
+            <div className="form-row">
+                <div className="form-group col-md-6">
+                    <label htmlFor="addressline">Addressline</label>
+                    <input type="text" formcontrolname="addressline" className="form-control" id="addressline" />
+                </div>
+                <div className="form-group col-md-3">
+                    <label htmlFor="zipcode">Zipcode</label>
+                    <input type="text" formcontrolname="zipcode" className="form-control" id="zipcode" />
+                </div>
+            </div>
+
+            <div className="form-row">
+                <div className="form-group col-md-6">
+                    <label htmlFor="city">City</label>
+                    <input type="text" formcontrolname="city" className="form-control" id="city" />
+                </div>
+                <div className="form-group col-md-6">
+                    <label htmlFor="country">Country</label>
+                    <input type="text" formcontrolname="country" className="form-control" id="country" />
+                </div>
+            </div>
+
+            <hr className="mt-4 mb-4" />
+
+            <div className="form-row">
+                <div className="form-group col-md-6">
+                    <label htmlFor="email">Email address</label>
+                    <input type="email" formcontrolname="email" className="form-control" id="email" />
+                </div>
+                <div className="form-group col-md-6">
+                    <label htmlFor="password">Password</label>
+                    <input type="password" formcontrolname="password" className="form-control" id="password" />
+                </div>
+            </div>
+
+            <button type="submit" value="Update" className="btn btn-lg btn-primary">Update</button>
+
+        </div>
+    </form>
+
+</div>
 
 
+
+
+
+
+<div className="container">
+
+    <button type="button" className="btn btn-primary btn-sm px-2 ml-3 mb-5 " onClick={this.logout}>Logga ut</button>
+
+    <h2 className="mt-5 mb-5">Welcome { this.props.userData.firstname } { this.props.userData.lastname }</h2>
+
+    <div className=" mt-4">
+
+        <h5>Overview</h5>
+
+        <ul className="list-group">
+            <li className="list-group-item"><strong>Firstname:</strong> { this.props.userData.firstname }</li>
+            <li className="list-group-item"><strong>Middlename:</strong> { this.props.userData.middlename }</li>
+            <li className="list-group-item"><strong>Lastname:</strong> { this.props.userData.lastname }</li>
+            <li className="list-group-item"><strong>Date of birth:</strong> { this.props.userData.dateofbirth }</li>
+            <li className="list-group-item"><strong>Addressline:</strong> { this.props.userData.addressline }</li>
+            <li className="list-group-item"><strong>Zipcode:</strong> { this.props.userData.zipcode }</li>
+            <li className="list-group-item"><strong>City:</strong> { this.props.userData.city }</li>
+            <li className="list-group-item"><strong>Country:</strong> { this.props.userData.country }</li>
+        </ul>
+
+    </div>
+
+</div>

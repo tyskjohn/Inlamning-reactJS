@@ -3,7 +3,7 @@ import initialState from '../store'
 import lang from '../../languages/en-us'
 
 const authReducer = (state = initialState, action) => {
-    switch(action.type) {
+    switch (action.type) {
 
         case actions.LOGIN_SUCCESS:
             return {
@@ -56,7 +56,19 @@ const authReducer = (state = initialState, action) => {
                 statusMessage: lang.logout_fatalerror,
                 errorMessage: action.errorMessage
             }
-    
+
+        case actions.GET_PROFILE_SUCCESS:
+            return {
+                ...state,
+                currentUser: action.currentUser
+            }
+
+        case actions.UPDATE_PROFILE_SUCCESS:
+            return {
+                ...state,
+                currentUser: action.currentUser
+            }
+
         default:
             return state
     }

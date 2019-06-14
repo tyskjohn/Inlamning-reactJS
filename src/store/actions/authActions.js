@@ -48,20 +48,21 @@ export const login = (credentials) => dispatch => {
     })
     .then(res => res.json())
     .then(res => {
-        dispatch({
-            type: actions.LOGIN_SUCCESS,
-            user: res.currentUser,
-            isLoggedIn: res.success
-        })
-
         localStorage.setItem('ACCESS_TOKEN', res.token)
         localStorage.setItem('USER_ID', res.currentUser._id)
+        localStorage.setItem('USER', JSON.stringify(res.currentUser))
+
+        dispatch({
+            type: actions.LOGIN_SUCCESS,
+            currentUser: JSON.parse(localStorage.getItem('USER')),
+            isLoggedIn: res.success
+        })
 
     })
 
 }
 
-export const logout = (userinfo) => dispatch => {
+export const logout = () => dispatch => {
 
     dispatch({
         type: actions.LOGOUT_SUCCESS
@@ -69,6 +70,7 @@ export const logout = (userinfo) => dispatch => {
 
     localStorage.removeItem('ACCESS_TOKEN')
     localStorage.removeItem('USER_ID')
+    localStorage.removeItem('USER')
     
 
     // fetch(__apiurl + '/angularUsers/logout', {
@@ -104,8 +106,31 @@ export const logout = (userinfo) => dispatch => {
 
 }
 
-export const get = (user, jwt) => dispatch => {
+export const getUserProfile = (currentUser, ACCESS_TOKEN) => dispatch => {
+    
+    // fetch(`${__apiurl}/angularUsers/${currentUser._id}`, {
+    //     method: 'GET',
+    //     headers: {
+    //         'content-type' : 'application/json',
+    //         'authorization' : 'bearer ' + ACCESS_TOKEN
+    //     }
+    // })
+    // .then(res => res.json())
+    // .then(res => {
+    //     dispatch({
+    //         type: actions.GET_PROFILE_SUCCESS,
+    //         currentUser: res.currentUser
+    //     })
 
+    //     localStorage.setItem('USER', JSON.stringify(res.currentUser))
+
+    // })
+    
+    
+    dispatch({
+        type: actions.GET_PROFILE_SUCCESS,
+        currentUser: JSON.parse(localStorage.getItem('USER'))
+    })
 }
 
 export const update = (user, jwt) => dispatch => {

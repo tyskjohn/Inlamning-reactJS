@@ -8,8 +8,8 @@ import LoginForm from '../../../forms/LoginForm';
 
 const mapStateToProps = (state) => {
     return {
-        user: state.auth.user,
-        loggedIn: state.auth.loggedIn
+        userData: state.auth.currentUser,
+        isLoggedIn: state.auth.isLoggedIn
     }
 }
 
@@ -25,7 +25,7 @@ class Login extends Component {
         super(props)
 
         this.state = {
-            user: {},
+            userData: {},
             cred: {
                 email: '',
                 password: ''
@@ -45,15 +45,13 @@ class Login extends Component {
     }
 
     render() {
-        if(localStorage.getItem('ACCESS_TOKEN') !== null) {
+        if(localStorage.getItem('ACCESS_TOKEN')) {
 
-            console.log("FLYTTTTA TILL PROFIL")
-            
             return( <Redirect to="/profile" /> )
         }
 
         return(
-            <div className="container">
+            <div className="container mt-5">
                 <h1>Login</h1>
                 <LoginForm cred={this.state.cred} onSubmit={this.onSubmit} onChange={this.onChange} />
             </div>
