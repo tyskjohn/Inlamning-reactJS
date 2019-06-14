@@ -7,24 +7,32 @@ class CustomerInfo extends Component {
         super(props)
 
         this.state = {
-            id: '5ccc2afb2726f63168f0d3c7',
-            currentUser: {}
+            customers: {}
         }
     }
 
     render() {
-        const { currentUser } = this.state;
+        const { customers, index } = this.state;
 
         return (
-            <div className="container">
+            <div>
                 <h4 className="mt-5 mb-5">Customerinfo</h4>
+
+                {
+                    customers.length ? customers.map( (customer) => <div key={index}> {customer.firstname} {customer.lastname}</div> )
+                    : //betyder else
+                        null
+                }                
+
             </div>
         )
     }
 
     componentDidMount() {
-        http.get(`http://localhost:3001/api/users/5ccc2afb2726f63168f0d3c7`)
-            .then(user => this.setState({ currentUser: user.data }))
+        let getToken = localStorage.getItem('ACCESS_TOKEN');
+        
+        http.get(`http://localhost:3001/api/customers/all`, { headers: { 'Authorization': `Bearer ${getToken}` } } )
+            .then(res => this.setState({ customers: res.data }))
             .catch(error => console.log(error))
     }
 

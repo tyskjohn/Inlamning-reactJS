@@ -32,10 +32,10 @@ const Navigation = (props) => {
 
                     <ul className="navbar-nav">
                         <li className="nav-item ">
-                            <NavLink className="nav-link" activeClassName="active" to="/profile/regcustomer">Add Customer</NavLink>
+                            <NavLink className="nav-link" activeClassName="active" to="/regcustomer">Add Customer</NavLink>
                         </li>
                         <li className="nav-item ">
-                            <NavLink className="nav-link" activeClassName="active" to="/profile/customerinfo">Customerinfo</NavLink>
+                            <NavLink className="nav-link" activeClassName="active" to="/customerinfo">Customerinfo</NavLink>
                         </li>
                     </ul>
 

@@ -1,22 +1,24 @@
 import React, { Component } from 'react';
 import http from 'axios';
-import { withRouter } from 'react-router-dom';
+import {  withRouter } from 'react-router-dom'
 
-class CustomerRegisterForm extends Component {
+class UpdateUserInfo extends Component {
 
     constructor(props) {
         super(props)
 
         this.state = {
+            id: localStorage.getItem('USER_ID'),
             firstname: '',
             lastname: '',
-            companyname: '',
+            middlename: '',
+            dateofbirth: '',
             addressline: '',
             zipcode: '',
             city: '',
             country: '',
             email: '',
-            phonenumber: ''
+            password: ''
         }
     }
 
@@ -27,20 +29,23 @@ class CustomerRegisterForm extends Component {
     handleSubmit = e => {
         e.preventDefault();
         http
-            .post('http://localhost:3001/api/customers/register', this.state)
+        let getToken = localStorage.getItem('ACCESS_TOKEN')
+            .put('http://localhost:3001/api/angularUsers/' + this.state.id, { headers: { 'Authorization': `Bearer ${getToken}` } })
             .then(res => console.log(res))
-            .then(() => this.props.history.push('/profile/customerinfo'))
+            .then(() => this.props.history.push('/profile'))
             .catch(error => console.log(error))
     }
 
     render() {
 
-        const { firstname, lastname, companyname, addressline, zipcode, city, country, email, phonenumber } = this.state;
+        const { firstname, lastname, middlename, dateofbirth, addressline, zipcode, city, country, email, password } = this.state;
 
         return (
-            <div>
-                <h4 className="mt-4 mb-3">Add a Customer</h4>
+            <div className="mt-5 ">
+
                 <form onSubmit={this.handleSubmit}>
+
+                    <h5 className="mb-3">Personal info</h5>
 
                     <div className="form-row">
                         <div className="form-group col-md-6">
@@ -56,12 +61,19 @@ class CustomerRegisterForm extends Component {
 
                     <div className="form-row">
                         <div className="form-group col-md-6">
-                            <label htmlFor="companyname">Company Name</label>
-                            <input type="text" value={companyname} onChange={this.handleChange} className="form-control" id="companyname" />
+                            <label htmlFor="middlename">Middlename</label>
+                            <input type="text" value={middlename} onChange={this.handleChange} className="form-control" id="middlename" />
+                        </div>
+
+                        <div className="form-group col-md-6">
+                            <label htmlFor="dateofbirth">Date of birth</label>
+                            <input type="date" value={dateofbirth} onChange={this.handleChange} className="form-control" id="dateofbirth" placeholder="yyyy-mm-dd" />
                         </div>
                     </div>
 
                     <hr className="mt-4 mb-4" />
+
+                    <h5 className="mb-3">Shipping info</h5>
 
                     <div className="form-row">
                         <div className="form-group col-md-6">
@@ -89,18 +101,20 @@ class CustomerRegisterForm extends Component {
 
                     <hr className="mt-4 mb-4" />
 
+                    <h5 className="mb-3">Login info</h5>
+
                     <div className="form-row">
                         <div className="form-group col-md-6">
                             <label htmlFor="email">Email address</label>
                             <input type="email" value={email} onChange={this.handleChange} className="form-control" id="email" />
                         </div>
                         <div className="form-group col-md-6">
-                            <label htmlFor="phonenumber">Phone Number</label>
-                            <input type="text" value={phonenumber} onChange={this.handleChange} className="form-control" id="phonenumber" />
+                            <label htmlFor="password">Password</label>
+                            <input type="password" value={password} onChange={this.handleChange} className="form-control" id="password" />
                         </div>
                     </div>
 
-                    <button type="submit" value="AddCustomer" className="mt-3 btn btn-lg btn-primary mb-5">Add Customer</button>
+                    <button type="submit" value="Update"  className="mt-3 btn btn-lg btn-secondary mb-5">Update info</button>
 
                 </form>
 
@@ -108,7 +122,6 @@ class CustomerRegisterForm extends Component {
 
         )
     }
-
 }
 
-export default withRouter(CustomerRegisterForm);
+export default  withRouter(UpdateUserInfo);

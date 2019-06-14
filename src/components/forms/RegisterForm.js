@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import http from 'axios';
+import {  withRouter } from 'react-router-dom'
 
 class RegisterForm extends Component {
 
@@ -15,10 +16,6 @@ class RegisterForm extends Component {
             zipcode: '',
             city: '',
             country: '',
-            addressline2: '',
-            zipcode2: '',
-            city2: '',
-            country2: '',
             email: '',
             password: ''
         }
@@ -39,7 +36,7 @@ class RegisterForm extends Component {
 
     render() {
 
-        const { firstname, lastname, middlename, dateofbirth, addressline, zipcode, city, country, addressline2, zipcode2, city2, country2, email, password } = this.state;
+        const { firstname, lastname, middlename, dateofbirth, addressline, zipcode, city, country, email, password } = this.state;
 
         return (
             <div className="mt-5 ">
@@ -102,34 +99,7 @@ class RegisterForm extends Component {
 
                     <hr className="mt-4 mb-4" />
 
-                    <h5 className="mb-3">Billing info</h5>
-
-                    <div className="form-row">
-                        <div className="form-group col-md-6">
-                            <label htmlFor="addressline2">Addressline</label>
-                            <input type="text" value={addressline2} onChange={this.handleChange} className="form-control" id="addressline2" />
-                        </div>
-
-                        <div className="form-group col-md-3">
-                            <label htmlFor="zipcode2">Zipcode</label>
-                            <input type="text" value={zipcode2} onChange={this.handleChange} className="form-control" id="zipcode2" />
-                        </div>
-                    </div>
-
-                    <div className="form-row">
-                        <div className="form-group col-md-6">
-                            <label htmlFor="city2">City</label>
-                            <input type="text" value={city2} onChange={this.handleChange} className="form-control" id="city2" />
-                        </div>
-
-                        <div className="form-group col-md-6">
-                            <label htmlFor="country2">Country</label>
-                            <input type="text" value={country2} onChange={this.handleChange} className="form-control" id="country2" />
-                        </div>
-
-                    </div>
-
-                    <hr className="mt-4 mb-4" />
+                    <h5 className="mb-3">Login info</h5>
 
                     <div className="form-row">
                         <div className="form-group col-md-6">
@@ -153,4 +123,4 @@ class RegisterForm extends Component {
 
 }
 
-export default RegisterForm;
+export default  withRouter(RegisterForm);

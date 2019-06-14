@@ -5,6 +5,8 @@ import Login from './userSection/Login';
 import Profile from './userSection/Profile';
 import Register from './userSection/Register';
 import Home from './Home';
+import CustomerInfo from '../main/customerSection/CustomerInfo';
+import RegCustomer from '../main/customerSection/RegCustomer';
 
 const Content = (props) => {
     return (
@@ -14,6 +16,8 @@ const Content = (props) => {
                 <Route path='/login' component={Login} />
                 <Route path='/profile' component={Profile} />
                 <Route path='/register' component={Register} />
+                <Route path='/customerinfo' component={CustomerInfo} />
+                <Route path='/regcustomer' component={RegCustomer} />
             </Switch>
         </main>
     )

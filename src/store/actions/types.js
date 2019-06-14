@@ -1,0 +1,12 @@
+const actions = {
+    LOGIN_SUCCESS :     'LOGIN_SUCCESS',
+    LOGIN_FAILED :      'LOGIN_FAILED',
+    LOGIN_FATALERROR :  'LOGIN_FATALERROR',
+
+    LOGOUT_SUCCESS :    'LOGOUT_SUCCESS',
+    LOGOUT_FAILED :     'LOGOUT_FAILED',
+    LOGOUT_FATALERROR : 'LOGOUT_FATALERROR'
+
+}
+
+export default actions
