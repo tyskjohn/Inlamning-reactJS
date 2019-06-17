@@ -8,7 +8,7 @@ import LoginForm from '../../../forms/LoginForm';
 
 const mapStateToProps = (state) => {
     return {
-        userData: state.auth.currentUser,
+        // userData: state.auth.currentUser,
         isLoggedIn: state.auth.isLoggedIn
     }
 }
@@ -27,8 +27,8 @@ class Login extends Component {
         this.state = {
             userData: {},
             cred: {
-                email: 'john@john',
-                password: 'john'
+                email: '',
+                password: ''
             }
         }
     }
@@ -45,7 +45,7 @@ class Login extends Component {
     }
 
     render() {
-        if(localStorage.getItem('ACCESS_TOKEN')) {
+        if(localStorage.getItem('ACCESS_TOKEN') ) {
 
             return( <Redirect to="/profile" /> )
         }

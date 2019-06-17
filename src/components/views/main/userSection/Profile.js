@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import http from 'axios';
-import { logout, getUserProfile } from '../../../../store/actions/authActions';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { logout, getUserProfile, updateProfile } from '../../../../store/actions/authActions';
+import { Redirect } from 'react-router-dom';
 
 import UpdateUserInfo from '../../../forms/UpdateUserInfo'
 
@@ -17,6 +17,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getUserProfile: () => dispatch(getUserProfile()),
+        updateProfile: (currentUser, ACCESS_TOKEN) => dispatch(updateProfile(currentUser, ACCESS_TOKEN)),
         logout: () => dispatch(logout())
     }
 }
@@ -41,6 +42,23 @@ class Profile extends Component {
         this.setState({ isEditing: false })
     }
 
+    onChange = e => {
+        const currentUser = this.state.currentUser
+        currentUser[e.target.id] = e.target.value
+        return this.setState({ currentUser: currentUser })
+    }
+
+    saveEdit = e => {
+        e.preventDefault()
+        this.props.updateProfile(this.state.currentUser, localStorage.getItem('ACCESS_TOKEN'))
+        this.props.history.push('/profile')
+    }  
+
+    cancelEdit = e => {
+        this.setState({ currentUser: JSON.parse(localStorage.getItem('USER')) })
+        this.props.history.push('/profile')
+    }
+
     toggleEdit = e => {
         this.setState({ isEditing: !this.setState.isEditing })
     }
@@ -62,7 +80,7 @@ class Profile extends Component {
 
                     <h2 className="mt-3 mb-5">Welcome {this.state.currentUser.firstname} {this.state.currentUser.lastname}</h2>
 
-                    <UpdateUserInfo currentUser={this.state.currentUser}  />
+                    <UpdateUserInfo currentUser={this.state.currentUser} onChange={this.onChange} saveEdit={this.saveEdit} cancelEdit={this.cancelEdit} />
 
                 </div>
             )
@@ -72,11 +90,11 @@ class Profile extends Component {
 
             <div className="container">
                 
-                <h2 className="mt-3 mb-5">Welcome {this.state.currentUser.firstname} {this.state.currentUser.lastname} <button type="button" className="btn btn-warning btn ml-3" onClick={this.toggleEdit} ><i className="fas fa-cog"></i> Edit Profile</button> <button type="button" className="btn btn-primary btn ml-3" onClick={this.logout}>Logga ut</button></h2>
+                <h2 className="mt-3 mb-5">Welcome {this.state.currentUser.firstname} {this.state.currentUser.lastname}</h2>
 
                 <div className=" mt-5">
 
-                    <h5><i class="fas fa-user mr-1"></i> Overview</h5>
+                    <h5><i className="fas fa-user mr-1"></i> Overview <button type="button" className="btn btn-warning btn ml-3" onClick={this.toggleEdit} ><i className="fas fa-cog"></i> Edit Profile</button> <button type="button" className="btn btn-primary btn ml-3" onClick={this.logout}>Logga ut</button></h5>
 
                     <ul className="list-group mt-3 mb-5">
                         <li className="list-group-item"><strong>Firstname:</strong> {this.props.currentUser.firstname}</li>

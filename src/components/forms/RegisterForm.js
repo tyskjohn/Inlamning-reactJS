@@ -31,7 +31,10 @@ class RegisterForm extends Component {
             .post('http://localhost:3001/api/angularUsers/register', this.state)
             .then(res => console.log(res))
             .then(() => this.props.history.push('/login'))
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                window.alert("Invalid form")
+            })
     }
 
     render() {

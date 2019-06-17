@@ -48,6 +48,7 @@ export const login = (credentials) => dispatch => {
     })
     .then(res => res.json())
     .then(res => {
+
         localStorage.setItem('ACCESS_TOKEN', res.token)
         localStorage.setItem('USER_ID', res.currentUser._id)
         localStorage.setItem('USER', JSON.stringify(res.currentUser))
@@ -106,26 +107,27 @@ export const logout = () => dispatch => {
 
 }
 
-export const getUserProfile = (currentUser, ACCESS_TOKEN) => dispatch => {
+export const getUserProfile = () => dispatch => {
     
-    // fetch(`${__apiurl}/angularUsers/${currentUser._id}`, {
-    //     method: 'GET',
-    //     headers: {
-    //         'content-type' : 'application/json',
-    //         'authorization' : 'bearer ' + ACCESS_TOKEN
-    //     }
-    // })
-    // .then(res => res.json())
-    // .then(res => {
-    //     dispatch({
-    //         type: actions.GET_PROFILE_SUCCESS,
-    //         currentUser: res.currentUser
-    //     })
-
-    //     localStorage.setItem('USER', JSON.stringify(res.currentUser))
-
-    // })
+/*     let userId = localStorage.getItem('USER_ID');
     
+    fetch(`${__apiurl}/angularUsers/${userId}`, {
+        method: 'GET',
+        headers: {
+            'content-type' : 'application/json',
+            'authorization' : 'bearer ' + ACCESS_TOKEN
+        }
+    })
+    .then(res => res.json())
+    .then(res => {
+        dispatch({
+            type: actions.GET_PROFILE_SUCCESS,
+            currentUser: res.currentUser
+        })
+
+        localStorage.setItem('USER', JSON.stringify(res.currentUser))
+
+    }) */
     
     dispatch({
         type: actions.GET_PROFILE_SUCCESS,
@@ -133,6 +135,65 @@ export const getUserProfile = (currentUser, ACCESS_TOKEN) => dispatch => {
     })
 }
 
-export const update = (user, jwt) => dispatch => {
+// export const updateProfile = (currentUser, ACCESS_TOKEN) => dispatch => {
     
+
+//     let userId = localStorage.getItem('USER_ID');
+//     let ACCESS_TOKEN = localStorage.getItem('ACCESS_TOKEN')
+
+//     console.log(ACCESS_TOKEN)   
+
+//     fetch(`${__apiurl}/angularUsers/${userId}`, {
+//         method: 'PATCH',
+//         headers: {
+//             'content-type': 'application/json',
+//             'authorization': 'bearer ' + ACCESS_TOKEN
+//         },
+//         body: JSON.stringify(currentUser)
+//     })
+//     .then(res => res.json())
+//     .then(res => {
+        
+
+//         localStorage.setItem('USER', JSON.stringify(currentUser))
+
+//         dispatch({
+//             type: actions.UPDATE_PROFILE_SUCCESS,
+//             currentUser: currentUser
+//         })
+
+        
+//     })       
+
+// }
+
+export const updateProfile = (currentUser, ACCESS_TOKEN) => dispatch => {
+    console.log(ACCESS_TOKEN);
+
+    // let userId = localStorage.getItem('USER_ID');
+ 
+    fetch(`${__apiurl}/angularUsers/${currentUser._id}`, {
+        method: 'PATCH',
+        headers: {
+            'content-type': 'application/json',
+            'authorization': 'bearer ' + ACCESS_TOKEN
+        },
+        body: JSON.stringify(currentUser)
+    })
+    .then(res => res.json())
+    .then(res => {
+
+
+        localStorage.setItem('USER', JSON.stringify(currentUser))
+
+        console.log(currentUser)
+        window.alert("Profile updated successfully")
+        dispatch({
+            type: actions.UPDATE_PROFILE_SUCCESS,
+            // currentUser: JSON.parse(localStorage.getItem('USER'))
+            currentUser: currentUser
+        })
+
+    })
+
 }
