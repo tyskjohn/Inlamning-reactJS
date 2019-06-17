@@ -7,6 +7,7 @@ import Register from './userSection/Register';
 import Home from './Home';
 import CustomerInfo from '../main/customerSection/CustomerInfo';
 import RegCustomer from '../main/customerSection/RegCustomer';
+import CustomerIssues from './customerSection/CustomerIssues';
 
 const Content = (props) => {
     return (
@@ -18,6 +19,7 @@ const Content = (props) => {
                 <Route path='/register' component={Register} />
                 <Route path='/customerinfo' component={CustomerInfo} />
                 <Route path='/regcustomer' component={RegCustomer} />
+                <Route path='/customerissues' component={CustomerIssues} />
             </Switch>
         </main>
     )

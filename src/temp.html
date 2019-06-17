@@ -107,128 +107,229 @@
 
 import React, { Component } from 'react';
 import http from 'axios';
-import {  withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 class UpdateUserInfo extends Component {
 
-    constructor(props) {
-        super(props)
+constructor(props) {
+super(props)
 
-        this.state = {
-            id: localStorage.getItem('USER_ID'),
-            firstname: '',
-            lastname: '',
-            middlename: '',
-            dateofbirth: '',
-            addressline: '',
-            zipcode: '',
-            city: '',
-            country: '',
-            email: '',
-            password: ''
-        }
-    }
-
-    handleChange = e => {
-        this.setState({ [e.target.id]: e.target.value });
-    }
-
-    handleSubmit = e => {
-        e.preventDefault();
-        http
-        let getToken = localStorage.getItem('ACCESS_TOKEN')
-            .put('http://localhost:3001/api/angularUsers/' + this.state.id, { headers: { 'Authorization': `Bearer ${getToken}` } })
-            .then(res => console.log(res))
-            .then(() => this.props.history.push('/profile'))
-            .catch(error => console.log(error))
-    }
-
-    render() {
-
-        const { firstname, lastname, middlename, dateofbirth, addressline, zipcode, city, country, email, password } = this.state;
-
-        return (
-            <div className="mt-5 ">
-
-                <form onSubmit={this.handleSubmit}>
-
-                    <h5 className="mb-3">Personal info</h5>
-
-                    <div className="form-row">
-                        <div className="form-group col-md-6">
-                            <label htmlFor="firstname">Firstname</label>
-                            <input type="text" value={firstname} onChange={this.handleChange} className="form-control" id="firstname" />
-                        </div>
-
-                        <div className="form-group col-md-6">
-                            <label htmlFor="lastname">Lastname</label>
-                            <input type="text" value={lastname} onChange={this.handleChange} className="form-control" id="lastname" />
-                        </div>
-                    </div>
-
-                    <div className="form-row">
-                        <div className="form-group col-md-6">
-                            <label htmlFor="middlename">Middlename</label>
-                            <input type="text" value={middlename} onChange={this.handleChange} className="form-control" id="middlename" />
-                        </div>
-
-                        <div className="form-group col-md-6">
-                            <label htmlFor="dateofbirth">Date of birth</label>
-                            <input type="date" value={dateofbirth} onChange={this.handleChange} className="form-control" id="dateofbirth" placeholder="yyyy-mm-dd" />
-                        </div>
-                    </div>
-
-                    <hr className="mt-4 mb-4" />
-
-                    <h5 className="mb-3">Shipping info</h5>
-
-                    <div className="form-row">
-                        <div className="form-group col-md-6">
-                            <label htmlFor="addressline">Addressline</label>
-                            <input type="text" value={addressline} onChange={this.handleChange} className="form-control" id="addressline" />
-                        </div>
-
-                        <div className="form-group col-md-3">
-                            <label htmlFor="zipcode">Zipcode</label>
-                            <input type="text" value={zipcode} onChange={this.handleChange} className="form-control" id="zipcode" />
-                        </div>
-                    </div>
-
-                    <div className="form-row">
-                        <div className="form-group col-md-6">
-                            <label htmlFor="city">City</label>
-                            <input type="text" value={city} onChange={this.handleChange} className="form-control" id="city" />
-                        </div>
-
-                        <div className="form-group col-md-6">
-                            <label htmlFor="country">Country</label>
-                            <input type="text" value={country} onChange={this.handleChange} className="form-control" id="country" />
-                        </div>
-                    </div>
-
-                    <hr className="mt-4 mb-4" />
-
-                    <h5 className="mb-3">Login info</h5>
-
-                    <div className="form-row">
-                        <div className="form-group col-md-6">
-                            <label htmlFor="email">Email address</label>
-                            <input type="email" value={email} onChange={this.handleChange} className="form-control" id="email" />
-                        </div>
-                        <div className="form-group col-md-6">
-                            <label htmlFor="password">Password</label>
-                            <input type="password" value={password} onChange={this.handleChange} className="form-control" id="password" />
-                        </div>
-                    </div>
-
-                    <button type="submit" value="Update"  className="mt-3 btn btn-lg btn-secondary mb-5">Update info</button>
-
-                </form>
-
-            </div>
-
-        )
-    }
+this.state = {
+id: localStorage.getItem('USER_ID'),
+firstname: '',
+lastname: '',
+middlename: '',
+dateofbirth: '',
+addressline: '',
+zipcode: '',
+city: '',
+country: '',
+email: '',
+password: ''
+}
 }
 
-export default  withRouter(UpdateUserInfo);
+handleChange = e => {
+this.setState({ [e.target.id]: e.target.value });
+}
+
+handleSubmit = e => {
+e.preventDefault();
+http
+let getToken = localStorage.getItem('ACCESS_TOKEN')
+.put('http://localhost:3001/api/angularUsers/' + this.state.id, { headers: { 'Authorization': `Bearer ${getToken}` } })
+.then(res => console.log(res))
+.then(() => this.props.history.push('/profile'))
+.catch(error => console.log(error))
+}
+
+render() {
+
+const { firstname, lastname, middlename, dateofbirth, addressline, zipcode, city, country, email, password } =
+this.state;
+
+return (
+<div className="mt-5 ">
+
+    <form onSubmit={this.handleSubmit}>
+
+        <h5 className="mb-3">Personal info</h5>
+
+        <div className="form-row">
+            <div className="form-group col-md-6">
+                <label htmlFor="firstname">Firstname</label>
+                <input type="text" value={firstname} onChange={this.handleChange} className="form-control"
+                    id="firstname" />
+            </div>
+
+            <div className="form-group col-md-6">
+                <label htmlFor="lastname">Lastname</label>
+                <input type="text" value={lastname} onChange={this.handleChange} className="form-control"
+                    id="lastname" />
+            </div>
+        </div>
+
+        <div className="form-row">
+            <div className="form-group col-md-6">
+                <label htmlFor="middlename">Middlename</label>
+                <input type="text" value={middlename} onChange={this.handleChange} className="form-control"
+                    id="middlename" />
+            </div>
+
+            <div className="form-group col-md-6">
+                <label htmlFor="dateofbirth">Date of birth</label>
+                <input type="date" value={dateofbirth} onChange={this.handleChange} className="form-control"
+                    id="dateofbirth" placeholder="yyyy-mm-dd" />
+            </div>
+        </div>
+
+        <hr className="mt-4 mb-4" />
+
+        <h5 className="mb-3">Shipping info</h5>
+
+        <div className="form-row">
+            <div className="form-group col-md-6">
+                <label htmlFor="addressline">Addressline</label>
+                <input type="text" value={addressline} onChange={this.handleChange} className="form-control"
+                    id="addressline" />
+            </div>
+
+            <div className="form-group col-md-3">
+                <label htmlFor="zipcode">Zipcode</label>
+                <input type="text" value={zipcode} onChange={this.handleChange} className="form-control" id="zipcode" />
+            </div>
+        </div>
+
+        <div className="form-row">
+            <div className="form-group col-md-6">
+                <label htmlFor="city">City</label>
+                <input type="text" value={city} onChange={this.handleChange} className="form-control" id="city" />
+            </div>
+
+            <div className="form-group col-md-6">
+                <label htmlFor="country">Country</label>
+                <input type="text" value={country} onChange={this.handleChange} className="form-control" id="country" />
+            </div>
+        </div>
+
+        <hr className="mt-4 mb-4" />
+
+        <h5 className="mb-3">Login info</h5>
+
+        <div className="form-row">
+            <div className="form-group col-md-6">
+                <label htmlFor="email">Email address</label>
+                <input type="email" value={email} onChange={this.handleChange} className="form-control" id="email" />
+            </div>
+            <div className="form-group col-md-6">
+                <label htmlFor="password">Password</label>
+                <input type="password" value={password} onChange={this.handleChange} className="form-control"
+                    id="password" />
+            </div>
+        </div>
+
+        <button type="submit" value="Update" className="mt-3 btn btn-lg btn-secondary mb-5">Update info</button>
+
+    </form>
+
+</div>
+
+)
+}
+}
+
+export default withRouter(UpdateUserInfo);
+
+
+<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div className="container">
+
+        <NavLink to='/' className="navbar-brand">Inlämning ReactJS</NavLink>
+
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon" />
+        </button>
+
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <ul className="navbar-nav mr-auto">
+                <li className="nav-item">
+                    <NavLink className="nav-link" activeClassName="active" to="/">Home</NavLink>
+                </li>
+            </ul>
+
+            <ul className="navbar-nav">
+                <li className="nav-item ">
+                    <NavLink className="nav-link" activeClassName="active" to="/login">Login</NavLink>
+                </li>
+                <li className="nav-item ">
+                    <NavLink className="nav-link" activeClassName="active" to="/register">Register</NavLink>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+
+<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div className="container">
+
+        <NavLink to='/' className="navbar-brand">Inlämning ReactJS</NavLink>
+
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon" />
+        </button>
+
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <ul className="navbar-nav mr-auto">
+                <li className="nav-item">
+                    <NavLink className="nav-link" activeClassName="active" to="/">Home</NavLink>
+                </li>
+            </ul>
+
+            <ul className="navbar-nav">
+                <li className="nav-item ">
+                    <NavLink className="nav-link" activeClassName="active" to="/regcustomer">Add Customer</NavLink>
+                </li>
+                <li className="nav-item ">
+                    <NavLink className="nav-link" activeClassName="active" to="/customerinfo">Customerinfo</NavLink>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+
+
+<div classname="form-check">
+    <input classname="form-check-input" type="radio" name="notstarted" id="notstarted" value={notstarted} />
+    <label classname="form-check-label" htmlFor="exampleRadios1">
+        Not started
+    </label>
+</div>
+<div classname="form-check">
+    <input classname="form-check-input" type="radio" name="active" id="active" value={active} />
+    <label classname="form-check-label" htmlFor="exampleRadios2">
+        Active
+    </label>
+</div>
+<div classname="form-check">
+    <input classname="form-check-input" type="radio" name="finished" id="finished" value={finished} />
+    <label classname="form-check-label" htmlFor="exampleRadios2">
+        Finished
+    </label>
+</div>
+
+<div className="form-group">
+    <label htmlFor="status">Status</label>
+    <select className="form-control" id="status" value={this.state.value}>
+        <option value={notstarted} >Not started</option>
+        <option value={active} >Active</option>
+        <option value={finished} >Finishied</option>
+    </select>
+</div>

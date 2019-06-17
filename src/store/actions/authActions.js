@@ -168,7 +168,6 @@ export const getUserProfile = () => dispatch => {
 // }
 
 export const updateProfile = (currentUser, ACCESS_TOKEN) => dispatch => {
-    console.log(ACCESS_TOKEN);
 
     // let userId = localStorage.getItem('USER_ID');
  
@@ -186,14 +185,30 @@ export const updateProfile = (currentUser, ACCESS_TOKEN) => dispatch => {
 
         localStorage.setItem('USER', JSON.stringify(currentUser))
 
-        console.log(currentUser)
         window.alert("Profile updated successfully")
         dispatch({
             type: actions.UPDATE_PROFILE_SUCCESS,
-            // currentUser: JSON.parse(localStorage.getItem('USER'))
             currentUser: currentUser
         })
 
     })
 
 }
+
+// export const getIssues = (ACCESS_TOKEN) => dispatch => {
+
+//     fetch(`${__apiurl}/issues/all`, {
+//         method: 'GET',
+//         headers: {
+//             'content-type' : 'application/json',
+//             'authorization' : 'bearer ' + ACCESS_TOKEN
+//         }
+//     })
+//     .then(res => res.json())
+//     .then(res => {
+//         dispatch({
+//             type: actions.GET_PROFILE_SUCCESS,
+//             currentUser: res.currentUser
+//         })
+//     })
+// }

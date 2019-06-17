@@ -1,28 +1,36 @@
 import React, { Component } from 'react';
 import http from 'axios';
+import { NavLink } from 'react-router-dom';
+import UniqueId from 'react-html-id';
 
 class CustomerInfo extends Component {
 
     constructor(props) {
         super(props)
 
+        UniqueId.enableUniqueIds(this);
+
         this.state = {
             customers: {}
         }
+        console.log(this.state.customers)
     }
 
     render() {
-        const { customers, index } = this.state;
+        const { customers } = this.state;
 
         return (
-            <div>
+            <div className="container">
                 <h4 className="mt-5 mb-5">Customerinfo</h4>
 
+
+                <ul className="list-group">
                 {
-                    customers.length ? customers.map( (customer) => <div key={index}> {customer.firstname} {customer.lastname}</div> )
+                    customers.length ? customers.map( (customer) => <li key={customer._id} className="list-group-item" > <strong>Customer:</strong> {customer.email} # {customer.id} <NavLink to="/customerissues" customer={this.state.customers} type="button" className="add-issue btn btn-primary btn-sm">add issue</NavLink> </li> )
                     : //betyder else
                         null
-                }                
+                }       
+                </ul>         
 
             </div>
         )

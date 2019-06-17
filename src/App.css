@@ -25,3 +25,22 @@
     transition: ease-in-out .2s;
     color: blue;
 }
+
+.add-issue {
+    position: absolute;
+    right: 20px;
+    top: 8px;
+
+}
+
+.notstarted {
+    color: red;
+}
+
+.active {
+    color: blue;
+}
+
+.finished {
+    color: green;
+}

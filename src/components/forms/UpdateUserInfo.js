@@ -2,17 +2,7 @@ import React, { Component } from 'react';
 
 class UpdateUserInfo extends Component {
 
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            password: ''
-        }
-    }
-
     render() {
-
-        const { password } = this.state;
 
         return (
             <div className=" mt-5">
@@ -30,7 +20,7 @@ class UpdateUserInfo extends Component {
                         <li className="list-group-item"><strong>City:</strong> <input className="input-border-none" type="text" id="city" value={this.props.currentUser.city}  onChange={this.props.onChange} /> <label className="edit-label" htmlFor="city"><i className="fas fa-cog"></i></label> </li>
                         <li className="list-group-item"><strong>Country:</strong> <input className="input-border-none" type="text" id="country" value={this.props.currentUser.country} onChange={this.props.onChange}  /> <label className="edit-label" htmlFor="country"><i className="fas fa-cog"></i></label> </li>
                         <li className="list-group-item"><strong>Email:</strong> <input className="input-border-none" type="email" id="email" value={this.props.currentUser.email}  onChange={this.props.onChange} /> <label className="edit-label" htmlFor="email"><i className="fas fa-cog"></i></label> </li>
-                        <li className="list-group-item"><strong>Password:</strong> <input className="input-border-none" type="password" id="password" value={password} onChange={this.props.onChange}  /> <label className="edit-label" htmlFor="password"><i className="fas fa-cog"></i></label> </li>
+                        <li className="list-group-item"><strong>Password:</strong> <input className="input-border-none" type="password" id="password" value={this.props.currentUser.password} onChange={this.props.onChange}  /> <label className="edit-label" htmlFor="password"><i className="fas fa-cog"></i></label> </li>
                     </ul>
 
                 </form>
