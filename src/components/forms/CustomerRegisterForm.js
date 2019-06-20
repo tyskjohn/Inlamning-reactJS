@@ -29,7 +29,7 @@ class CustomerRegisterForm extends Component {
         http
             .post('http://localhost:3001/api/customers/register', this.state)
             .then(res => console.log(res))
-            .then(() => this.props.history.push('/profile/customerinfo'))
+            .then(() => this.props.history.push('/customerinfo'))
             .catch(error => console.log(error))
     }
 

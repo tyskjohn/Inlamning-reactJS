@@ -14,7 +14,7 @@ class LoginForm extends Component {
                     <input type="password" className="form-control" id="password" placeholder="Password" value={ this.props.password } onChange={this.props.onChange} />
                 </div>
 
-                <button type="submit" className="btn btn-lg btn-secondary">Login</button>
+                <button type="submit" className="btn btn-lg btn-primary">Login</button>
 
             </form>
         )

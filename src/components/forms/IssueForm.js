@@ -10,10 +10,7 @@ class IssueForm extends Component {
         this.state = {
             title: '',
             description: '',
-            status: '',
-            notstarted: '',
-            active: '',
-            finished: '',
+            status: 'notstarted'
         }
     }
 
@@ -35,7 +32,7 @@ class IssueForm extends Component {
 
     render() {
 
-        const { title, description, status, notstarted, active, finished } = this.state;
+        const { title, description, status } = this.state;
 
         return (
 
@@ -49,10 +46,10 @@ class IssueForm extends Component {
                     <div className="form-group col-md-4">
 
                         <label htmlFor="status">Status</label>
-                        <select className="form-control" id="status" value={this.state.value} onChange={this.handleChange}>
-                            <option value={notstarted} className="notstarted" >Not started</option>
-                            <option value={active} className="active" >Active</option>
-                            <option value={finished} className="finished" >Finished</option>
+                        <select className="form-control" id="status" value={status} onChange={this.handleChange}>
+                            <option value="notstarted" className="notstarted" >Not started</option>
+                            <option value="active" className="active" >Active</option>
+                            <option value="finished" className="finished" >Finished</option>
                         </select>
                         
                     </div>
