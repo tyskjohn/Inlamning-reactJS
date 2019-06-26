@@ -51,6 +51,7 @@ export const login = (credentials) => dispatch => {
 
         localStorage.setItem('ACCESS_TOKEN', res.token)
         localStorage.setItem('USER_ID', res.currentUser._id)
+        localStorage.setItem('USER_EMAIL', res.currentUser.email)
         localStorage.setItem('USER', JSON.stringify(res.currentUser))
 
         dispatch({
@@ -71,6 +72,7 @@ export const logout = () => dispatch => {
 
     localStorage.removeItem('ACCESS_TOKEN')
     localStorage.removeItem('USER_ID')
+    localStorage.removeItem('USER_EMAIL')
     localStorage.removeItem('USER')
     
 

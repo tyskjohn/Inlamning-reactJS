@@ -46,7 +46,6 @@ class Login extends Component {
 
     render() {
         if(localStorage.getItem('ACCESS_TOKEN') ) {
-
             return( <Redirect to="/profile" /> )
         }
 
