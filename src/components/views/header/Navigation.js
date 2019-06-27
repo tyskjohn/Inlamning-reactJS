@@ -106,7 +106,7 @@ const Navigation = (props) => {
                             <NavLink className="nav-link" activeClassName="active" to="/regcustomer">Add Customer</NavLink>
                         </li>
                         <li className="nav-item ">
-                            <NavLink className="nav-link" activeClassName="active" to="/customerinfo">Customerinfo</NavLink>
+                            <NavLink className="nav-link" activeClassName="active" to="/customerinfo">Customer issues</NavLink>
                         </li>
                     </ul>
 
